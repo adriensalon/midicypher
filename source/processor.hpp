@@ -35,5 +35,9 @@ public:
     void setStateInformation(const void* data, int sizeInBytes) override;
 
 private:
+	// juce::AudioParameterFloat* _loudest;
+	// juce::AudioParameterFloat* _quietest;
+	juce::AudioParameterInt* _voices;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioPluginAudioProcessor)
 };
