@@ -2,9 +2,9 @@
 #include "editor.hpp"
 
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
-    : AudioProcessorEditor (&p), processorRef (p)
+    : AudioProcessorEditor (&p), _processor (p)
 {
-    juce::ignoreUnused (processorRef);
+    juce::ignoreUnused (_processor);
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
@@ -26,7 +26,7 @@ void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
     
     g.fillAll (juce::Colours::black);
     g.setOpacity (1.0f);
-    g.drawImage (processorRef.spectrogram, getLocalBounds().toFloat());
+    g.drawImage (_processor.spectrogram, getLocalBounds().toFloat());
 }
 
 void AudioPluginAudioProcessorEditor::resized()
@@ -37,8 +37,8 @@ void AudioPluginAudioProcessorEditor::resized()
 
 void AudioPluginAudioProcessorEditor::timerCallback()
 {
-    if (processorRef.must_repaint) {
+    if (_processor.must_repaint) {
         repaint();
-        processorRef.must_repaint = false;
+        _processor.must_repaint = false;
     }
 }
