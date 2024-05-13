@@ -48,5 +48,7 @@ private:
 	juce::AudioParameterInt* _range;
 	juce::AudioParameterFloat* _resolution;
 
+    void _reset_detection();
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioPluginAudioProcessor)
 };

@@ -59,7 +59,7 @@ void AudioPluginAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, j
                     auto skewedProportionY = 1.0f - std::exp(std::log((float)y / (float)imageHeight) * 0.2f);
                     auto fftDataIndex = (size_t)juce::jlimit<int>(0, static_cast<int>(_fft_size) / 2, (int)(skewedProportionY * static_cast<int>(_fft_size) / 2));
                     auto level = juce::jmap(_fft_data[fftDataIndex], 0.0f, juce::jmax(maxLevel.getEnd(), 1e-5f), 0.0f, 1.0f);
-                    spectrogram.setPixelAt(rightHandEdge, y, juce::Colour::fromHSV(level, 1.0f, level, 1.0f));
+                    spectrogram.setPixelAt(rightHandEdge, y, juce::Colour::fromHSV(level / 2.f, 1.0f, level, 1.0f));
                 }
                 must_repaint = true;
             }
